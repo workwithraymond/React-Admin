@@ -16,66 +16,68 @@ const FAQ = () => {
 
       <Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography color={colors.greenAccent[500]} variant="h5">
-            An Important Question
+          <Typography color={colors.greenAccent[500]} variant="h4">
+            What is Admin Dashboard?
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            Admin Dashboard is an online web-based Human Resource Management System
+            that can be used by any small and medium enterprise to manage its most 
+            important asset-its people! 
           </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography color={colors.greenAccent[500]} variant="h5">
-            Another Important Question
+          <Typography color={colors.greenAccent[500]} variant="h4">
+            What do I need to start my Online Admin Dashboard? 
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            All you need is a computer with internet connection and you are good to go!
           </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography color={colors.greenAccent[500]} variant="h5">
-            Your Favorite Question
+          <Typography color={colors.greenAccent[500]} variant="h4">
+            What are my computer requirements to use admin dashboard?
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          Admin Dashboard is a web based application that does not have any special 
+          hardware requirements. If your computer can handle Yahoo Mail, Gmail and 
+          Hotmail, it can definitely handle Admin Dashboard.
           </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography color={colors.greenAccent[500]} variant="h5">
-            Some Random Question
+          <Typography color={colors.greenAccent[500]} variant="h4">
+            Can I cancel my subscription?
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+           You can cancel anytime, you will not be charged from your next 
+           billing cycle.
           </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography color={colors.greenAccent[500]} variant="h5">
-            The Final Question
+          <Typography color={colors.greenAccent[500]} variant="h4">
+            How long does it take to get a response from Admin Dashboard support?
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            Admin Dashboard standard response time is 1-2 business days, but we 
+            try our best to respond to all queries within the several hours or 
+            maximum by the next business day.
           </Typography>
         </AccordionDetails>
       </Accordion>

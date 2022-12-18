@@ -93,10 +93,10 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="32,441"
+            title="38,441"
             subtitle="New Clients"
             progress="0.30"
-            increase="+5%"
+            increase="+10%"
             icon={
               <PersonAddIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -112,7 +112,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="1,325,134"
+            title="1,430,134"
             subtitle="Traffic Received"
             progress="0.80"
             increase="+43%"
@@ -150,7 +150,7 @@ const Dashboard = () => {
                 fontWeight="bold"
                 color={colors.greenAccent[500]}
               >
-                $59,342.32
+                $49,312.32
               </Typography>
             </Box>
             <Box>
