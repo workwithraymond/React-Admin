@@ -16,7 +16,7 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
-import HowToRegIcon from '@mui/icons-material/HowToReg';
+
 import REACTLOGO from '../../images/user.png'
 
 
@@ -121,14 +121,6 @@ const Sidebar = () => {
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
 
-                <Item
-              title="Register"
-              to="/signup"
-              icon={<HowToRegIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            
             <Item
               title="Dashboard"
               to="/"
