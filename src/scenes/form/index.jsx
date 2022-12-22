@@ -4,12 +4,16 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 
+
+
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-
+ 
   const handleFormSubmit = (values) => {
     console.log(values);
+    
   };
+  
 
   return (
     <Box m="20px">
@@ -135,10 +139,14 @@ const Form = () => {
               </Button>
             </Box>
           </form>
+         
         )}
+        
       </Formik>
     </Box>
+   
   );
+  
             };
 
 const phoneRegExp =
@@ -152,20 +160,16 @@ const checkoutSchema = yup.object().shape({
     .string()
     .matches(phoneRegExp, "Phone number is not valid")
     .required("required"),
-  address1: yup.string(),
-  city: yup.string(),
-  state: yup.string(),
-  
+  address1: yup.string().required("required"),
+  address2: yup.string().required("required"),
 });
 const initialValues = {
   firstName: "",
   lastName: "",
   email: "",
   contact: "",
-  address: "",
-  city: "",
-  state: ""
-  
+  address1: "",
+  address2: "",
 };
 
 export default Form;
