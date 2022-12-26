@@ -1,13 +1,19 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import {useEffect, useState} from "react";
+import { Box, Typography, useTheme, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataTeam } from "../../data/mockData";
+// import { mockDataTeam } from "../../data/mockData";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
+import {collection, getDocs, deleteDoc, doc} from "firebase/firestore";
+import {db} from "../../firebase";
 
 const Team = () => {
+  const [users, setUsers] = useState([]);
+  const [selectedIds, setIds] = useState([]);
+ 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
@@ -68,9 +74,49 @@ const Team = () => {
     },
   ];
 
+  useEffect(() => {
+    getAllUsers();
+  }, [])
+
+  const getAllUsers = async () => {
+    const querySnapshot = await getDocs(collection(db, "users"));
+
+    const user_list = [];
+    var id = 1;
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      data.id = id;
+      data._id = doc.id;
+      data.name = data.firstName + " " + data.lastName;
+      data.access = "admin";
+      id++;
+
+      user_list.push(data);
+    });
+
+    setUsers(user_list);
+  }
+
+  const handleDelete = async () => {
+    console.log(selectedIds);
+    const selected = users.filter(row => selectedIds.includes(row.id));
+    console.log(selected);
+
+    for(var i = 0; i < selected.length; i++) {
+      await deleteDoc(doc(db, "users", selected[i]._id));
+    }
+
+    await getAllUsers();
+    setIds([]);
+  }
+
+
   return (
     <Box m="20px">
       <Header title="TEAM" subtitle="Managing the Team Members" />
+      <Button variant="contained" color="secondary" onClick={handleDelete}>
+        Delete
+      </Button>
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -100,7 +146,15 @@ const Team = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
+        <DataGrid 
+          checkboxSelection 
+          rows={users}           
+          columns={columns} 
+          onSelectionModelChange={(ids) => {
+            console.log(ids);   
+            setIds(ids) ;
+          }}          
+        />
       </Box>
     </Box>
   );

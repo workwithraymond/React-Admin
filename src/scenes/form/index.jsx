@@ -3,14 +3,24 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import {collection, addDoc} from "firebase/firestore";
+import {db} from "../../firebase";
+
 
 
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
  
-  const handleFormSubmit = (values) => {
+  const handleFormSubmit = async (values) => {
     console.log(values);
+    
+    try {
+      const docRef = await addDoc(collection(db, "users"), values);
+      console.log("Document written with ID: ", docRef.id);
+    } catch(e) {
+      console.error("Error adding document: ", e);
+    }
     
   };
   
@@ -20,7 +30,11 @@ const Form = () => {
       <Header title="CREATE USER" subtitle="Create a New User Profile" />
 
       <Formik
-        onSubmit={handleFormSubmit}
+        onSubmit={(values, {setSubmitting}) => {
+          setSubmitting(true)
+          handleFormSubmit(values)
+          setSubmitting(false)
+        }}
         initialValues={initialValues}
         validationSchema={checkoutSchema}
       >
@@ -84,54 +98,29 @@ const Form = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Contact Number"
+                label="Phone Number"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.contact}
-                name="contact"
-                error={!!touched.contact && !!errors.contact}
-                helperText={touched.contact && errors.contact}
-                sx={{ gridColumn: "span 4" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Address"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 4" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="State"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.state}
-                name="state"
-                error={!!touched.state && !!errors.state}
-                helperText={touched.state && errors.state}
+                value={values.phone}
+                name="phone"
+                error={!!touched.phone && !!errors.phone}
+                helperText={touched.phone && errors.phone}
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
                 fullWidth
                 variant="filled"
-                type="text"
-                label="City"
+                type="number"
+                label="Age"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.city}
-                name="city"
-                error={!!touched.city && !!errors.city}
-                helperText={touched.city && errors.city}
+                value={values.age}
+                name="age"
+                error={!!touched.age && !!errors.age}
+                helperText={touched.age && errors.age}
                 sx={{ gridColumn: "span 2" }}
               />
+             
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
@@ -156,20 +145,18 @@ const checkoutSchema = yup.object().shape({
   firstName: yup.string().required("required"),
   lastName: yup.string().required("required"),
   email: yup.string().email("invalid email").required("required"),
-  contact: yup
+  phone: yup
     .string()
     .matches(phoneRegExp, "Phone number is not valid")
     .required("required"),
-  address1: yup.string().required("required"),
-  address2: yup.string().required("required"),
+  age: yup.number().required("required"), 
 });
 const initialValues = {
   firstName: "",
   lastName: "",
   email: "",
-  contact: "",
-  address1: "",
-  address2: "",
+  phone: "",
+  age: 0
 };
 
 export default Form;
